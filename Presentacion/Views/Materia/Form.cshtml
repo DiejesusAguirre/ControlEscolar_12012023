@@ -35,7 +35,7 @@
                             @Html.LabelFor(model => model.Nombre)
                             <div class="input-group mb-3">
                                 <span class="input-group-text"><i class="bi bi-journal-check"></i></span>
-                                @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", @id = "txtNombre" })
+                                @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", @id = "txtNombre", @placeholder = "Nombre de la Materia" })
                                 @Html.ValidationMessageFor(model => model.Nombre)
                             </div>
 
@@ -50,7 +50,7 @@
                             @Html.LabelFor(model => model.Costo)
                             <div class="input-group mb-3">
                                 <span class="input-group-text"><i class="bi bi-currency-dollar"></i></span>
-                                @Html.TextBoxFor(model => model.Costo, new { @class = "form-control", @id = "txtCosto" })
+                                @Html.TextBoxFor(model => model.Costo, new { @class = "form-control", @id = "txtCosto" , @placeholder = "Costo de la Materia" })
                                 @Html.ValidationMessageFor(model => model.Costo)
                             </div>
 

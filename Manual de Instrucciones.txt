@@ -1,0 +1,27 @@
+Manual de Instrucciones
+
+1.	Conexión a la base de datos. 
+1.1.	 Al descargar el .zip, dentro de la carpeta llamada SQL hay un archivo .bak y un script. Puede implementar la base de datos de cualquiera de los dos archivos.
+1.1.1	Para usar el archivo .bak, deberá entra Microsoft SQL, dentro de un nuevo query (New Query), se creará una nueva base de datos con el nombre “ControlEscolar” (CREATE DATABASE ControlEscolar).
+1.1.2	Al crear esa base de datos, dentro del explorador de Microsoft SQL, en la carpeta Databases, estará la base de datos que se acabo de crear y se dará clic derecho a la base.
+1.1.3	En el menú que saldrá, desplegamos la opción que dice Tasks, luego la opción Restore y damos clic en la opción Database. (Tasks>Restore>Database).
+1.1.4	Dentro de la ventana que aparecerá en la primera vista en el apartado de “Source”, primero seleccionamos la opción de “Device” y en el botón de los tres puntos (…) se dará clic.
+1.1.5	Aparecerá una nueva ventana, en la cual esta será para agregar el archivo, aquí se da clic en el botón de “Add”. Después aparecerá una nueva ventana donde da por default una ruta. 
+Esta ruta la copiaremos y pegaremos en un nuevo Explorador de archivos del equipo y copiaremos y pegaremos el archivo .bak de la Carpeta SQL dentro de la ruta del Explorador de archivos.
+1.1.6	Una vez ya colocada en la ruta, volvemos a la última ventana abierta en Microsoft SQL y refrescamos la ventana, y aparecerá el archivo .bak de la base de datos, y lo seleccionaremos. 
+Después daremos clic en el botón de “Ok” a las ventanas aparecidas.
+1.1.7	Regresamos a la primera ventana de “Restore Database”, la que apareció principal. Dentro del menú del lado izquierdo que aparece en la ventana, se ingresara a la opción que dice “Options” u Opciones.
+1.1.8	Ya una vez ingresados, dentro de las opciones de restauración o “Restore Options”, escogemos la primera opción o casilla que aparece, dice “Overwrite the existing database (WITH REPLACE)”.
+
+
+1.1.9	Por último, damos clic en el botón de “Ok” y se comenzara a cargar la base de datos.
+2.	Crear nueva conexión en Visual Studio.
+2.1.	En la barra de opciones superior de Visual Studio, desplegamos en la opción de Ver o “View”, en esa opción seleccionamos la opción de “Explorador de Servidores”.
+2.2.	Aparecerá un panel del lado izquierdo y dentro seleccionamos el icono de conectar hacia la base de datos.
+2.3.	Dentro de la ventana que aparece se coloca el nombre de su servidor y la manera de autentificación y después de colocar la autentificación de Microsoft SQL, se deberá seleccionar la base de datos y verificamos que si conecte.
+
+
+3.	Cambiar cadena de conexión dentro del proyecto de Visual Studio
+3.1.	Dentro del proyecto, al abrir la solución se encontrarán 4 capas, dentro de la capa de presentación en el archivo Web.config, se modificara el tags de “<connectionStrings>”,  
+en la cadena se cambia el nombre del Servidor “Source” y si la conexión fue por Autenticación de SQL Server, se cambiara el usuario y contraseña a la cual se tenga.
+3.2.	Lo mismo del paso 3.1, se realizara en la capa de Servicios en el mismo archivo Web.config.

@@ -193,6 +193,7 @@
     <Content Include="Views\AlumnoMateria\GetAllMaterias.cshtml" />
     <Content Include="Views\AlumnoMateria\Modal.cshtml" />
     <Content Include="Views\AlumnoMateria\Login.cshtml" />
+    <Content Include="Views\AlumnoMateria\ModalLogin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

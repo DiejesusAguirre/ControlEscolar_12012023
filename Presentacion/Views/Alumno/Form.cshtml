@@ -35,7 +35,7 @@
                             @Html.LabelFor(model => model.Nombre)
                             <div class="input-group mb-3">
                                 <span class="input-group-text"><i class="bi bi-person-bounding-box"></i></span>
-                                @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", @id = "txtNombre", autocomplete = "off", @onkeypress = "return SoloLetras(event, 'lblNombre')" })
+                                @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", @id = "txtNombre", @placeholder = "Nombres(s)", autocomplete = "off", @onkeypress = "return SoloLetras(event, 'lblNombre')" })
                                 @Html.ValidationMessageFor(model => model.Nombre)
                             </div>
                             @Html.Label("", null, new { @id = "lblNombre" })
@@ -50,7 +50,7 @@
                             @Html.LabelFor(model => model.ApellidoPaterno)
                             <div class="input-group mb-3">
                                 <span class="input-group-text"><i class="bi bi-person-bounding-box"></i></span>
-                                @Html.TextBoxFor(model => model.ApellidoPaterno, new { @class = "form-control", @id = "txtApellidoPaterno", autocomplete = "off", @onkeypress = "return SoloLetras(event, 'lblApellidoPaterno')" })
+                                @Html.TextBoxFor(model => model.ApellidoPaterno, new { @class = "form-control", @id = "txtApellidoPaterno", @placeholder = "Apellido Paterno", autocomplete = "off", @onkeypress = "return SoloLetras(event, 'lblApellidoPaterno')" })
                                 @Html.ValidationMessageFor(model => model.ApellidoPaterno)
                             </div>
                             @Html.Label("", null, new { @id = "lblApellidoPaterno" })
@@ -65,7 +65,7 @@
                             @Html.LabelFor(model => model.ApellidoMaterno)
                             <div class="input-group mb-3">
                                 <span class="input-group-text"><i class="bi bi-person-bounding-box"></i></span>
-                                @Html.TextBoxFor(model => model.ApellidoMaterno, new { @class = "form-control", @id = "txtApellidoMaterno", autocomplete = "off", @onkeypress = "return SoloLetras(event, 'lblApellidoMaterno')" })
+                                @Html.TextBoxFor(model => model.ApellidoMaterno, new { @class = "form-control", @id = "txtApellidoMaterno", @placeholder = "Apellido Materno", autocomplete = "off", @onkeypress = "return SoloLetras(event, 'lblApellidoMaterno')" })
                                 @Html.ValidationMessageFor(model => model.ApellidoMaterno)
                             </div>
                             @Html.Label("", null, new { @id = "lblApellidoMaterno" })
