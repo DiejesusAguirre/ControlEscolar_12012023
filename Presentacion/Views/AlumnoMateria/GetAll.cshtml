@@ -1,0 +1,51 @@
+﻿@model Negocio.Alumno
+@{
+    ViewBag.Title = "AlumnosRegistrados";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Alumno</h2>
+
+<div class="container">
+    <p>Aqui puede seleccionar un Alumno y ver sus materias</p>
+
+    <div class="row">
+
+        <table class="table table-hover" id="tblMaterias">
+            <thead>
+                <tr>
+                    <th scope="col">Seleccionar</th>
+                    <th style="display: none">ID Alumno</th>
+                    <th scope="col">Nombre del Alumno</th>
+                    <th scope="col">Apellido Paterno</th>
+                    <th scope="col">Apellido Materno</th>
+                    <th scope="col">Foto</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Negocio.Alumno alumno in Model.Alumnos)
+                {
+                    <tr>
+                        <td class="text-center"><a class="btn btn-success" href="@Url.Action("GetAllMateria", "AlumnoMateria", new { IdAlumno = alumno.IdAlumno })"><i class="bi bi-bookmark-check-fill"></i></a></td>
+                        <td style="display: none">@alumno.IdAlumno</td>
+                        <td>@alumno.Nombre</td>
+                        <td>@alumno.ApellidoPaterno</td>
+                        <td>@alumno.ApellidoMaterno</td>
+                        @if (alumno.Foto.Length > 0)
+                        {
+                            <td><img src="data:image/*;base64,@alumno.Foto" class="img-thumbnail card-img-top" style="height:100px; width:100px;" /></td>
+                        }
+                        else
+                        {
+                            <td><img src="~/assets/img/SinUsuario.jpg" class="img-thumbnail card-img-top" style="height:100px; width:100px;"/></td>
+                        }
+                    </tr>
+                    @Html.HiddenFor(model => model.IdAlumno)
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+

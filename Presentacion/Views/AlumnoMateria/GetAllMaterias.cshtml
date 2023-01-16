@@ -1,0 +1,97 @@
+﻿@model Negocio.AlumnoMateria
+@{
+    ViewBag.Title = "GetAllMaterias";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Agregar Materias</h2>
+<div class="container">
+    <p>Aqui puede ver, editar o agregar a un Materia de este Alumno</p>
+    <hr class="hr" />
+    <hr class="hr" />
+    @if (Model.AlumnoMaterias != null)
+    {
+        using (Html.BeginForm("AgregarMaterias", "AlumnoMateria", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="row">
+
+                <div class="row">
+                    <div class="col-md-3">
+                        @Html.TextBoxFor(model => model.Alumno.IdAlumno, new { @class = "form-control", @style = "display :none" })
+                    </div>
+                    <div class="col-md-3">
+                        @Html.TextBoxFor(model => model.Alumno.Nombre, new { @class = "form-control", @disabled = "disabled" })
+                    </div>
+                    <div class="col-md-3">
+                        @Html.TextBoxFor(model => model.Alumno.ApellidoPaterno, new { @class = "form-control", @disabled = "disabled" })
+                    </div>
+                    <div class="col-md-3">
+                        @Html.TextBoxFor(model => model.Alumno.ApellidoMaterno, new { @class = "form-control", @disabled = "disabled" })
+                    </div>
+                    <div class="col-md-3">
+                        @if (Model.Alumno.Foto.Length > 0)
+                        {
+                            <img src="data:image/*;base64,@Model.Alumno.Foto" class="img-thumbnail card-img-top" style="height:220px; width:250px;" />
+                        }
+                        else
+                        {
+                            <img src="~/assets/img/SinUsuario.jpg" class="img-thumbnail card-img-top" />
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <hr />
+                <table class="table table-hover" id="tblDependiente">
+                    <thead>
+                        <tr>
+                            <th scope="col">Agregar</th>
+                            <th style="display :none">ID Alumno</th>
+                            <th scope="col">Nombre de la Materia</th>
+                            <th scope="col">Costo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (Negocio.AlumnoMateria materia in Model.AlumnoMaterias)
+
+                        {
+                            <tr>
+                                <td><input type="checkbox" value=@materia.IdMateria name="AlumnoMaterias"></td>
+                                <td>@materia.Materia.Nombre</td>
+                                <td>@materia.Materia.Costo</td>
+                            </tr>
+
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+            @Html.HiddenFor(model => model.Alumno.IdAlumno)
+            <div class="form-group">
+
+                <div class="col-md-3">
+                    <input type="submit" value="Agregar" class="btn btn-success" />
+                    <a class="btn btn-danger" href="@Url.Action("GetAllMateria", "AlumnoMateria", new { IdAlumno = Model.Alumno.IdAlumno })">Regresar</a>
+
+                </div>
+            </div>
+        }
+
+
+
+    }
+    else
+    {
+        <div class="alert alert-warning" role="alert">
+            Este alumno cuenta con todas las materias
+        </div>
+        <div class="form-group">
+            <div class="col-md-3">
+                <a class="btn btn-danger" href="@Url.Action("GetAllMateria", "AlumnoMateria", new { IdAlumno = Model.Alumno.IdAlumno })">Regresar</a>
+            </div>
+        </div>
+    }
+
+</div>
+

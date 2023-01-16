@@ -1,0 +1,159 @@
+﻿@model Negocio.Alumno
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2>Form</h2>
+    <div class="row">
+        <div class="col-md-12">
+
+            @using (Html.BeginForm("Form", "Alumno", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="form-horizontal">
+
+
+                    <div class="form-group">
+
+                        <div class="col-md-3">
+
+                            @Html.LabelFor(model => model.IdAlumno, new { @style = "display: none" })
+
+                            @Html.TextBoxFor(model => model.IdAlumno, new { @class = "hidden form-control", @style = "display: none" })
+
+                            @Html.ValidationMessageFor(model => model.IdAlumno)
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <div class="col-md-3">
+
+                            @Html.LabelFor(model => model.Nombre)
+                            <div class="input-group mb-3">
+                                <span class="input-group-text"><i class="bi bi-person-bounding-box"></i></span>
+                                @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", @id = "txtNombre", autocomplete = "off", @onkeypress = "return SoloLetras(event, 'lblNombre')" })
+                                @Html.ValidationMessageFor(model => model.Nombre)
+                            </div>
+                            @Html.Label("", null, new { @id = "lblNombre" })
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <div class="col-md-3">
+
+                            @Html.LabelFor(model => model.ApellidoPaterno)
+                            <div class="input-group mb-3">
+                                <span class="input-group-text"><i class="bi bi-person-bounding-box"></i></span>
+                                @Html.TextBoxFor(model => model.ApellidoPaterno, new { @class = "form-control", @id = "txtApellidoPaterno", autocomplete = "off", @onkeypress = "return SoloLetras(event, 'lblApellidoPaterno')" })
+                                @Html.ValidationMessageFor(model => model.ApellidoPaterno)
+                            </div>
+                            @Html.Label("", null, new { @id = "lblApellidoPaterno" })
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <div class="col-md-3">
+
+                            @Html.LabelFor(model => model.ApellidoMaterno)
+                            <div class="input-group mb-3">
+                                <span class="input-group-text"><i class="bi bi-person-bounding-box"></i></span>
+                                @Html.TextBoxFor(model => model.ApellidoMaterno, new { @class = "form-control", @id = "txtApellidoMaterno", autocomplete = "off", @onkeypress = "return SoloLetras(event, 'lblApellidoMaterno')" })
+                                @Html.ValidationMessageFor(model => model.ApellidoMaterno)
+                            </div>
+                            @Html.Label("", null, new { @id = "lblApellidoMaterno" })
+                        </div>
+
+                    </div>
+
+                    <div class=" offset-md-12">
+
+                        @Html.LabelFor(model => model.Foto)
+                        <div>
+                            <input type="file" name="IfImage" id="IfImage" onchange="readURL(this);" />
+                        </div>
+                        @if (Model.Foto.Length > 0)
+                        {
+                            <img id="ImagenPreview" src="data:image/*;base64,@Model.Foto" style="height:100px; width:100px;" />
+                        }
+                        else
+                        {
+                            <img id="ImagenPreview" src="~/assets/img/SinUsuario.jpg" style="height:150px; width:200px;" />
+                        }
+                        @Html.ValidationMessageFor(model => model.Foto)
+                    </div>
+                    @Html.HiddenFor(model => model.Foto)
+
+
+                    <div class="form-group">
+
+                        <div class="col-md-3">
+
+
+
+                            <input type="submit" value="Guardar" class="btn btn-success" />
+
+                            @Html.ActionLink("Regresar", "GetAll", "Alumno", htmlAttributes: new { @class = "btn btn-danger" })
+
+                        </div>
+
+                    </div>
+
+                </div>
+            }
+
+
+
+        </div>
+    </div>
+</div>
+
+@Scripts.Render("~/bundles/jquery")
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#IfImage").change(function () {
+            let input = $(this);
+            let extencion = input.val().split(".").pop().toLowerCase();
+            if (input.val() != "") {
+                if (extencion != "jpg" && extencion != "png" && extencion != "jpeg") {
+                    input.replaceWith(input.val('').clone(true));
+                    alert("imagen no permitida");
+                }
+            } else {
+                alert("favor de cargar una imagen");
+            }
+        });
+        $("#IfImage").change(function () {
+            readURL(this);
+        })
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#ImagenPreview').attr('src', e.target.result);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    });
+
+    function SoloLetras(e, controlId) {
+        var caracter = e.key;
+        if (!/[A-Za-z ]/g.test(caracter)) {
+            $('#' + controlId).text("Solo se aceptan letras minusculas o mayusculas");
+            $('#' + controlId).css({ "color": "red" });
+            return false;
+        }
+        else {
+            $('#' + controlId).text("");
+            return true;
+        }
+    }
+</script>

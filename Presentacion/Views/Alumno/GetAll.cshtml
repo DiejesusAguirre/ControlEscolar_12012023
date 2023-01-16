@@ -1,0 +1,51 @@
+﻿@model Negocio.Alumno
+@{
+    ViewBag.Title = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="font-weight-bold mb-2">Alumno</h2>
+
+<div class="container">
+    <p>Aqui puede ver, editar o agrgar a una Alumno</p>
+    <p>Para agregar a una Alumno presione el boton verde</p>
+    <p>Para editar a una Alumno presione el boton amarillo</p>
+    <p>Para eliminar una Alumno presione el boton rojo</p>
+
+    <div class="row">
+        <div style="float:left">
+            @Html.ActionLink("Añadir +", "Form", "Alumno", htmlAttributes: new { @class = "btn btn-success" })
+        </div>
+    </div>
+    <br />
+    <div class="row pb-5 mb-4">
+        @foreach (Negocio.Alumno alumno in Model.Alumnos)
+        {
+            <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                <!-- Card-->
+                <div class="card shadow-sm border-0 rounded">
+                    <div class="card-body p-0">
+                        @if (alumno.Foto.Length > 0)
+                        {
+                            <img src="data:image/*;base64,@alumno.Foto" class="img-thumbnail card-img-top" style="height:220px; width:250px;" />
+                        }
+                        else
+                        {
+                            <img src="~/assets/img/SinUsuario.jpg" class="img-thumbnail card-img-top" />
+                        }
+                        <div class="p-4">
+                            <h5 class="mb-0" style="display: none">@alumno.IdAlumno</h5>
+                            <h5 class="mb-0">@alumno.Nombre</h5>
+                            <p class="small text-muted">@alumno.ApellidoPaterno @alumno.ApellidoMaterno </p>
+                            <ul class="social mb-0 list-inline mt-3">
+                                <li class="list-inline-item m-0"><a class="btn btn-warning bi bi-arrow-repeat" href="@Url.Action("Form", "Alumno", new { IdAlumno = alumno.IdAlumno })"></a></li>
+                                <li class="list-inline-item m-1"><a class="btn btn-danger bi bi-eraser-fill" href="@Url.Action("Delete", "Alumno", new { IdAlumno = alumno.IdAlumno })" onclick="return confirm('Estas seguro que deseas eliminar este registro?');"></a></li>
+</ul>
+                        </div>
+                    </div>
+                </div>
+                <br />
+            </div>
+        }
+    </div>
+</div>

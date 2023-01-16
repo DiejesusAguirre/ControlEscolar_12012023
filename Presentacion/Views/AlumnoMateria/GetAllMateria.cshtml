@@ -1,0 +1,104 @@
+﻿@model Negocio.AlumnoMateria
+@{
+    ViewBag.Title = "Materias del Alumno";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="container">
+    <p>Aqui puede ver, editar o agregar a un Materia de este Alumno</p>
+    <hr class="hr" />
+    <div class="row">
+        
+        <div class="row">
+            <div class="col-md-3">
+                @Html.TextBoxFor(model => model.Alumno.IdAlumno, new { @class = "form-control", @style = "display :none" })
+            </div>
+            <div class="col-md-3">
+                @Html.TextBoxFor(model => model.Alumno.Nombre, new { @class = "form-control", @disabled = "disabled" })
+            </div>
+            <div class="col-md-3">
+                @Html.TextBoxFor(model => model.Alumno.ApellidoPaterno, new { @class = "form-control", @disabled = "disabled" })
+            </div>
+            <div class="col-md-3">
+                @Html.TextBoxFor(model => model.Alumno.ApellidoMaterno, new { @class = "form-control", @disabled = "disabled" })
+            </div>
+            <div class="col-md-3">
+                @if (Model.Alumno.Foto.Length > 0)
+                {
+                    <img src="data:image/*;base64,@Model.Alumno.Foto" class="img-thumbnail card-img-top" style="height:220px; width:250px;" />
+                }
+                else
+                {
+                    <img src="~/assets/img/SinUsuario.jpg" class="img-thumbnail card-img-top" />
+                }
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div style="float:right">
+            <a class="btn btn-success bi bi-person-fill-add" href="@Url.Action("GetAllMaterias","AlumnoMateria", new { IdAlumno =  @Model.Alumno.IdAlumno})"></a>
+        </div>
+    </div>
+    <hr class="hr" />
+    <div class="row">
+        <hr />
+        @if (Model.AlumnoMaterias != null)
+        {
+            <table class="table table-hover" id="tblDependiente">
+                <thead>
+                    <tr>
+                        <th style="display :none">ID Materia</th>
+                        <th style="display :none">ID AlumnoMateria</th>
+                        <th scope="col">Nombre de la Materia</th>
+                        <th scope="col">Costo</th>
+                        <th scope="col">Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (Negocio.AlumnoMateria alumnoMaterias in Model.AlumnoMaterias)
+
+                    {
+                        <tr>
+
+                            <td style="display :none">@alumnoMaterias.IdMateria</td>
+                            <td>@alumnoMaterias.Materia.Nombre</td>
+                            <td>@alumnoMaterias.Materia.Costo</td>
+                            <td class="text-center"><a class="btn btn-danger bi bi-trash-fill" href="@Url.Action("Delete", "AlumnoMateria", new { IdMateria = alumnoMaterias.IdMateria, IdAlumno = Model.Alumno.IdAlumno})" onclick="return confirm('Estas seguro que deseas eliminar este registro?');"></a></td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div class="form-group">
+                <div class="col-md-3">
+
+                    @Html.LabelFor(model => model.total)
+                    <div class="input-group mb-3">
+                        <span class="input-group-text"><i class="bi bi-currency-dollar"></i></span>
+                        @Html.TextBoxFor(model => model.total, new { @class = "form-control", autocomplete = "off", @disabled = "disabled"})
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3">
+                    @Html.ActionLink("Regresar", "GetAll", "AlumnoMateria", htmlAttributes: new { @class = "btn btn-danger" })
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-danger" role="alert">
+                Este alumno no tiene ninguna Materia
+            </div>
+            <div class="form-group">
+                <div class="col-md-3">
+                    @Html.ActionLink("Regresar", "GetAll", "AlumnoMateria", htmlAttributes: new { @class = "btn btn-danger" })
+                </div>
+            </div>
+        }
+    </div>
+
+</div>
