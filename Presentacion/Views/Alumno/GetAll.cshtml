@@ -7,10 +7,10 @@
 <h2 class="font-weight-bold mb-2">Alumno</h2>
 
 <div class="container">
-    <p>Aqui puede ver, editar o agrgar a una Alumno</p>
-    <p>Para agregar a una Alumno presione el boton verde</p>
-    <p>Para editar a una Alumno presione el boton amarillo</p>
-    <p>Para eliminar una Alumno presione el boton rojo</p>
+    <p>Dentro del modulo presente, puede realizar ciertas acciones en especifico:</p>
+    <p>Para realizar la accion de agregar un nuevo alumno, se efectuara dando clic al boton verde que dice "Añadir +",</p>
+    <p>el poder realizar una actualizacion  a un alumno se debera dar clic al boton amarrillo que se encuentra debaja del alumno que desea modificar</p>
+    <p>y la ultima accion que puede realizar es el poder eliminar un alumno, esto se efectua con el boton rojo.</p>
 
     <div class="row">
         <div style="float:left">
@@ -40,8 +40,9 @@
                             <ul class="social mb-0 list-inline mt-3">
                                 <li class="list-inline-item m-0"><a class="btn btn-warning bi bi-arrow-repeat" href="@Url.Action("Form", "Alumno", new { IdAlumno = alumno.IdAlumno })"></a></li>
                                 <li class="list-inline-item m-1"><a class="btn btn-danger bi bi-eraser-fill" href="@Url.Action("Delete", "Alumno", new { IdAlumno = alumno.IdAlumno })" onclick="return confirm('Estas seguro que deseas eliminar este registro?');"></a></li>
-</ul>
+                            </ul>
                         </div>
+
                     </div>
                 </div>
                 <br />

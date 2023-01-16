@@ -7,7 +7,8 @@
 <h2>Alumno</h2>
 
 <div class="container">
-    <p>Aqui puede seleccionar un Alumno y ver sus materias</p>
+    <p>En el modulo presente puede realizar la accion de seleccionar alguno de los alumnos registradas previamente</p>
+    <p>y dentro de ello, poder visualizar sus materias asignadas, eliminar alguna materia asignada del alumno o igual agregar nuevas materias al alumno.</p>
 
     <div class="row">
 
@@ -26,7 +27,7 @@
                 @foreach (Negocio.Alumno alumno in Model.Alumnos)
                 {
                     <tr>
-                        <td class="text-center"><a class="btn btn-success" href="@Url.Action("GetAllMateria", "AlumnoMateria", new { IdAlumno = alumno.IdAlumno })"><i class="bi bi-bookmark-check-fill"></i></a></td>
+                        <td class="text-left"><a class="btn btn-success" href="@Url.Action("GetAllMateria", "AlumnoMateria", new { IdAlumno = alumno.IdAlumno })"><i class="bi bi-bookmark-check-fill"></i></a></td>
                         <td style="display: none">@alumno.IdAlumno</td>
                         <td>@alumno.Nombre</td>
                         <td>@alumno.ApellidoPaterno</td>
@@ -37,7 +38,7 @@
                         }
                         else
                         {
-                            <td><img src="~/assets/img/SinUsuario.jpg" class="img-thumbnail card-img-top" style="height:100px; width:100px;"/></td>
+                            <td><img src="~/assets/img/SinUsuario.jpg" class="img-thumbnail card-img-top" style="height:100px; width:100px;" /></td>
                         }
                     </tr>
                     @Html.HiddenFor(model => model.IdAlumno)

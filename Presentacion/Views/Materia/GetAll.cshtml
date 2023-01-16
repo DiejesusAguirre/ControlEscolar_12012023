@@ -6,10 +6,14 @@
 <h2>Materias</h2>
 
 <div class="container">
-    <p>Aqui puede ver, editar o agrgar a una Materia</p>
-    <p>Para agregar a una Materia presione el boton verde</p>
-    <p>Para editar a una Materia presione el boton amarillo</p>
-    <p>Para eliminar una Materia presione el boton rojo</p>
+    <p>En este modulo de materias, se mostrara una vista donde puede realizar acciones especificas e incluso consultar datos:</p>
+    <p>Dentro de la vista se puede realizar la accion de agregar una nueva materia dando clic en el boton verde de "Añadir",</p>
+    <p>otro de los requerimientos que puede realizar es la actualizacion de una materia dando clic en el boton amarrillo del lado izquierdo de la tabla,</p>
+    <p>de igual forma se puede efectuar la eliminacion de alguna materia esto con el boton rojo del lado derecho de la tabla.</p>
+    <hr class="hr" />
+    <p>En la parte inferior, abajo de la tabla se encuentran las paginas en las cuales puede explorar,</p>
+    <p>y por ultimo, se puede realizar la filtracion de datos por medio del recuadro de buscar.</p>
+    <hr class="hr" />
 
     <div class="row">
         <div style="float:right">
@@ -33,11 +37,11 @@
                 @foreach (Negocio.Materia materia in Model.Materias)
                 {
                     <tr>
-                        <td class="text-center"><a class="btn btn-warning" href="@Url.Action("Form", "Materia", new { IdMateria = materia.IdMateria })"><i class="bi bi-arrow-repeat" style="color: mintcream"></i></a></td>
+                        <td class="text-left"><a class="btn btn-warning" href="@Url.Action("Form", "Materia", new { IdMateria = materia.IdMateria })"><i class="bi bi-arrow-repeat" style="color: mintcream"></i></a></td>
                         <td style="display: none">@materia.IdMateria</td>
                         <td>@materia.Nombre</td>
                         <td>@materia.Costo</td>
-                        <td class="text-center"><a class="btn btn-danger" href="@Url.Action("Delete", "Materia", new { IdMateria = materia.IdMateria })" onclick="return confirm('Estas seguro que deseas eliminar este registro?');"><i class="bi bi-eraser-fill" style="color: mintcream"></i></a></td>
+                        <td class="text-left"><a class="btn btn-danger" href="@Url.Action("Delete", "Materia", new { IdMateria = materia.IdMateria })" onclick="return confirm('Estas seguro que deseas eliminar este registro?');"><i class="bi bi-eraser-fill" style="color: mintcream"></i></a></td>
 
                     </tr>
                 }

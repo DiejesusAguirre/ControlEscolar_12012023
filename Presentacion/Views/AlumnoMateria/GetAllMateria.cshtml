@@ -7,10 +7,12 @@
 <h2>@ViewBag.Title</h2>
 
 <div class="container">
-    <p>Aqui puede ver, eliminar o agregar a un Materia de este Alumno</p>
-    <hr class="hr" />
+    <p>Dentro de esta vista, se podra visualizar las materias que por el momento se encuentran asignadas al alumno,</p>
+    <p>se puede realizar la accion de poder eliminar materias que tenga asignadas con el boton rojo de la derecha y</p>
+    <p>de igual manera el poder agregar materias que no llegue a tener asignadas el alumno, esto se realiza con el boton verde</p>
+
     <div class="row">
-        
+
         <div class="row">
             <div class="col-md-3">
                 @Html.TextBoxFor(model => model.Alumno.IdAlumno, new { @class = "form-control", @style = "display :none" })
@@ -36,9 +38,10 @@
             </div>
         </div>
     </div>
+    <hr class="hr" />
     <div class="row">
         <div style="float:right">
-            <a class="btn btn-success bi bi-person-fill-add" href="@Url.Action("GetAllMaterias","AlumnoMateria", new { IdAlumno =  @Model.Alumno.IdAlumno})"></a>
+            <a class="btn btn-success bi bi-journal-check" href="@Url.Action("GetAllMaterias","AlumnoMateria", new { IdAlumno =  @Model.Alumno.IdAlumno})"></a>
         </div>
     </div>
     <hr class="hr" />
@@ -66,7 +69,7 @@
                             <td style="display :none">@alumnoMaterias.IdMateria</td>
                             <td>@alumnoMaterias.Materia.Nombre</td>
                             <td>@alumnoMaterias.Materia.Costo</td>
-                            <td class="text-center"><a class="btn btn-danger bi bi-trash-fill" href="@Url.Action("Delete", "AlumnoMateria", new { IdMateria = alumnoMaterias.IdMateria, IdAlumno = Model.Alumno.IdAlumno})" onclick="return confirm('Estas seguro que deseas eliminar este registro?');"></a></td>
+                            <td class="text-left"><a class="btn btn-danger bi bi-trash-fill" href="@Url.Action("Delete", "AlumnoMateria", new { IdMateria = alumnoMaterias.IdMateria, IdAlumno = Model.Alumno.IdAlumno})" onclick="return confirm('Estas seguro que deseas eliminar este registro?');"></a></td>
 
                         </tr>
                     }
@@ -78,7 +81,7 @@
                     @Html.LabelFor(model => model.total)
                     <div class="input-group mb-3">
                         <span class="input-group-text"><i class="bi bi-currency-dollar"></i></span>
-                        @Html.TextBoxFor(model => model.total, new { @class = "form-control", autocomplete = "off", @disabled = "disabled"})
+                        @Html.TextBoxFor(model => model.total, new { @class = "form-control", autocomplete = "off", @disabled = "disabled" })
                     </div>
                 </div>
             </div>

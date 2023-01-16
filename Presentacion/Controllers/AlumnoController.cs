@@ -138,7 +138,7 @@ namespace Presentacion.Controllers
         public ActionResult Form(Negocio.Alumno alumno)
         {
             HttpPostedFileBase file = Request.Files["IfImage"];
-            if (file != null)
+            if (file.ContentLength > 0)
             {
                 //llamar al metodo que convierte a bytes la imagen
                 byte[] ImagenBytes = ConvertToBytes(file);
